@@ -73,7 +73,9 @@ fun getDisplayDimensions(windowManager: WindowManager): Point {
 }
 
 fun offsetToColor(x: Float, y: Float, maxX: Float, maxY: Float): Color {
-    return Color.hsv(y * 360f / maxY, x / maxX, 1f, 1f)
+    val hue = (y * 360f / maxY).coerceAtMost(360f)
+    val saturation = (x / maxX).coerceAtMost(1f)
+    return Color.hsv(hue, saturation, 1f, 1f)
 }
 
 fun getDefaultColor(): Color {
